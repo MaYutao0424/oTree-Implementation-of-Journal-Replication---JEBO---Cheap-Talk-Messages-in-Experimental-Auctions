@@ -1,0 +1,94 @@
+{{ block title }}
+Decide Your Bid for SELLER 1's Product.
+{{ endblock }}
+{{ block content }}
+<style>
+    .otree-title {
+      text-align: center;
+      font-size: 2em;
+      font-weight:bold;
+    }
+    .otree-btn-next {
+      display: block;
+      margin: auto;
+      margin-top: 20px;
+      padding:auto;
+    }
+    .HIGH {
+      color:blue;
+      font-weight:bold;
+    }
+    .LOW {
+      color:red;
+      font-weight:bold;
+    }
+    
+    table {
+      width: 400px;
+      height: 100px;
+      margin: auto;
+      padding:auto;
+    }
+    th {
+      height: 35px;  
+    } 
+    table, td, th {
+      border: 1px solid ;
+      border-collapse: collapse;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .controls{
+      text-align: center;
+    }
+</style>
+
+<div>
+    <p>You are <strong>{{player.role}}</strong>. You are going to bid for <strong>SELLER 1's product</strong>.</p>
+    <p>Besides you, {{other_buyer_number}} buyer(s) is(are) going to bid for <strong>SELLER 1's product</strong>.</p>
+</div>
+<br>
+
+<div>
+    <p><strong>SELLER 1's product</strong> sent the message: 
+        {{if seller_this_group.SellerMessage == 1}}
+        <span class = 'HIGH'>I sell a HIGH-quality product.</span>
+        {{else}}
+          <span class = 'LOW'>I sell a LOW-quality product.</span>
+        {{endif}}
+    </p>
+    <p>The message can be TRUE, or it can be FALSE</p>
+</div>
+<br>
+
+<div>
+    <p>The probability of product quality being <span class="HIGH">HIGH</span> is <strong>{{C.HighQuality_p}}</strong></p>
+    <p>Buyers value a product depending on its quality as follows:</p>
+    <table >
+        <tr>
+          <th></th>
+          <th>Buyer's value</th>
+        </tr>
+        <tr>
+          <td><span class = 'HIGH' >High-quality</span></td>
+          <td><span class = 'HIGH' >{{C.HighQuality_v}}</span></td>
+        </tr>
+        <tr>
+          <td><span class = 'LOW' >Low-quality</span></td>
+          <td><span class = 'LOW' >{{C.LowQuality_v}}</span></td>
+        </tr>
+    </table>
+</div>
+<br>
+
+<div>
+  <label for="BuyerBid">Now, decide your bid for <strong>SELLER 1's product</strong>. Your bid should be greater than or equal to the reservation price, <strong>{{seller_this_group.SellerReservationPrice}}</strong>.</p>
+  <input type="number" class="form-control"  name="BuyerBid" >
+    {{ formfield_errors 'BuyerBid' }}
+    <p>If your bid is the highest, you get the product and pay the second highest bid / a reservation price.</p>
+</div>
+{{ next_button }}
+
+
+{{ endblock }}

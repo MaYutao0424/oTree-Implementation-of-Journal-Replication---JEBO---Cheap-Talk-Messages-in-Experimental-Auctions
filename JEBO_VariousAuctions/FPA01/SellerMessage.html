@@ -1,0 +1,79 @@
+{{ block title }}
+Determining a Message
+{{ endblock }}
+{{ block content }}
+<style>
+    .otree-title {
+      text-align: center;
+      font-size: 2em;
+      font-weight:bold;
+    }
+    .otree-btn-next {
+      display: block;
+      margin: auto;
+      margin-top: 20px;
+      padding:auto;
+    }
+    .HIGH {
+      color:blue;
+      font-weight:bold;
+    }
+    .LOW {
+      color:red;
+      font-weight:bold;
+    }
+    
+    table {
+      width: 400px;
+      height: 100px;
+      margin: auto;
+      padding:auto;
+    }
+    th {
+      height: 35px;  
+    } 
+    table, td, th {
+      border: 1px solid ;
+      border-collapse: collapse;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .controls{
+      text-align: center;
+    }
+  </style>
+<div>
+    <p>There are <strong>{{C.Seller_Num}}</strong> sellers and <strong>{{C.Buyer_Num}}</strong> buyers in the market.</p>
+    <p>You are <strong>{{player.role}}</strong>. Your product quality is <span class="{{player.SellerProductQuality}}">{{player.SellerProductQuality}}</span>.</p>
+    <p>Buyers <strong>DO NOT</strong> know your product quality.</p>
+</div>
+<br>
+<div>
+    <p>There are two types of product quality: <span class = 'HIGH' >HIGH</span> and <span class="LOW">LOW</span></p>
+    <p>Buyers expect the quality of your product to be <span class = 'HIGH' >HIGH</span> with probability <strong>{{C.HighQuality_p}}</strong>.</p>
+</div>
+<br>
+<div>
+  <p>Buyers value a product depending on its quality as follows:</p>
+  <table>
+    <tr>
+      <th></th>
+      <th>Buyer's value</th>
+    </tr>
+    <tr>
+      <td><span class = 'HIGH' >High-quality</span></td>
+      <td><span class = 'HIGH' >{{C.HighQuality_v}}</span></td>
+    </tr>
+    <tr>
+      <td><span class = 'LOW' >Low-quality</span></td>
+      <td><span class = 'LOW' >{{C.LowQuality_v}}</span></td>
+    </tr>
+  </table>
+</div>
+<br>
+{{ formfields }}
+  
+{{ next_button }}
+
+{{ endblock }}

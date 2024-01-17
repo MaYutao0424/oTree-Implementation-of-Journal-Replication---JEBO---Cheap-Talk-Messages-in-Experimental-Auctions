@@ -1,0 +1,39 @@
+{{ block title }}
+Introductions
+{{ endblock }}
+
+
+
+{{ block content }}
+<style>
+  .otree-title {
+    text-align: center;
+    font-size: 2em;
+    font-weight:bold;
+  }
+  .otree-btn-next {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    padding:auto;
+  }
+</style>
+<div>
+  <p>In this experiment, you will be asked to make decisions regarding buying or selling a product.</p>
+  <p>There are <strong>{{C.Seller_Num}}</strong> sellers and <strong>{{C.Buyer_Num}}</strong> buyers.</p>
+  <p>Sellers'quality can be either <span style="font-weight:bold; color:blue;" >HIGH</span> or <span style="font-weight:bold; color:red;">LOW</span>.</p>
+</div>
+
+<br>
+<div>
+  <p>1)Sellers communicate their product quality by sending a message.</p>
+  <p>2)Buyers see sellers'messages and choose from which seller to buy, if any at all.</p>
+  <p>3)Buyers decide how much to bid for the product.</p>
+  <p>4)The highest bidder wins and gets the product.</p>
+</div>
+
+<br>
+<div><strong>In this auction, the winner pays his/her own bid. Losing bidders also pay their bids but they DO NOT get the product.</strong></div>
+{{ next_button }}
+
+{{ endblock }}

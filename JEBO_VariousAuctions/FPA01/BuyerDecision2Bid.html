@@ -1,0 +1,113 @@
+{{ block title }}
+Decide Your Bid
+{{ endblock }}
+{{ block content }}
+<style>
+  .otree-title {
+    text-align: center;
+    font-size: 2em;
+    font-weight:bold;
+  }
+  .otree-btn-next {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    padding:auto;
+  }
+  .HIGH {
+    color:blue;
+    font-weight:bold;
+  }
+  .LOW {
+    color:red;
+    font-weight:bold;
+  }
+  
+  .smalltable {
+    width: 400px;
+    height: 100px;
+    margin: auto;
+    padding:auto;
+  }
+
+  .largetable{
+    width: 600px;
+    height: 200px;
+    margin: auto;
+    padding:auto;
+  }
+
+  th {
+    height: 35px;  
+  } 
+  table, td, th {
+    border: 1px solid ;
+    border-collapse: collapse;
+    font-size: 15px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .controls{
+    text-align: center;
+  }
+</style>
+<div>
+  <p>There are <strong>{{C.Seller_Num}}</strong> sellers and <strong>{{C.Buyer_Num}}</strong> buyers in the market.</p>
+  <p>You are <strong>{{player.role}}</strong>.</p>
+  <p>Buyers value a product depending on its quality as follows:</p>
+  <table class = 'smalltable'>
+    <tr>
+      <th></th>
+      <th>Buyer's value</th>
+    </tr>
+    <tr>
+      <td><span class = 'HIGH' >High-quality</span></td>
+      <td><span class = 'HIGH' >{{C.HighQuality_v}}</span></td>
+    </tr>
+    <tr>
+      <td><span class = 'LOW' >Low-quality</span></td>
+      <td><span class = 'LOW' >{{C.LowQuality_v}}</span></td>
+    </tr>
+  </table>
+</div>
+<br>
+
+<div>
+  <p>The messages sent by the sellers and the minimum bids are as follows. Note that the messages can be either TRUE or FALSE.</p>
+  <table class="largetable">
+    <tr>
+      <th></th>
+      <th>SELLER 1</th>
+      <th>SELLER 2</th>
+    </tr>
+    <tr>
+      <td>Message</td>
+      {{if SELLER1.SellerMessage == 1}}
+        <td><span class = 'HIGH'>I sell a HIGH-quality product.</span></td>
+      {{else}}
+        <td><span class = 'LOW'>I sell a LOW-quality product.</span></td>
+      {{endif}}
+
+      {{if SELLER2.SellerMessage == 1}}
+      <td><span class = 'HIGH'>I sell a HIGH-quality product.</span></td>
+      {{else}}
+      <td><span class = 'LOW'>I sell a LOW-quality product.</span></td>
+      {{endif}}
+    </tr>
+    <tr>
+      <td>Minimum bid</td>
+      <td>{{ SELLER1.SellerReservationPrice }}</td>
+      <td>{{ SELLER2.SellerReservationPrice }}</td>
+    </tr>
+  </table>
+</div>
+<br>
+
+<div>
+  <p>The quality of each seller's product was determined randomly at the beginning of the perod.</p>
+  <p>The probability of product quality being <span class="HIGH">HIGH</span> is <strong>{{C.HighQuality_p}}</strong>.</p>
+</div>
+{{ formfields }}
+{{ next_button }}
+{{ endblock }}
